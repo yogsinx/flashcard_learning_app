@@ -33,8 +33,8 @@
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             border-radius: 1.5rem;
-            background: white;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background: #f3f4f6;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -95,7 +95,7 @@
                 "createFlashcardsTitle": "Create flashcards",
                 "pasteTextTab": "Paste text",
                 "describeTopicTab": "Describe topic",
-                "describeTopicPlaceholder": "Describe a topic I will generate the details...\n\ne.g. capitals of the world\ne.g. fun facts about Black hole theory",
+                "describeTopicPlaceholder": "Describe a topic I will generate the details...\n\ne.g. capitals of the world\ne.g. fun facts about Black Holes",
                 "pasteTextPlaceholder": "Paste your text here...",
                 "generateFlashcardsButton": "Generate flashcards",
                 "generatingTitle": "Generating your flashcard set...",
@@ -180,18 +180,18 @@
 
             if (mode === 'create') {
                 return (
-                    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#6A9BCC' }}>
+                    <div className="min-h-screen flex items-center justify-center bg-gray-800">
                         <div className="w-full max-w-lg p-8">
                             <h1 className="text-white text-4xl font-bold text-center mb-8">{t('createFlashcardsTitle')}</h1>
                             
                             <div className="flex justify-center mb-6">
-                                <div className="bg-white/20 p-0.5 rounded-full inline-flex">
+                                <div className="bg-gray-700 p-0.5 rounded-full inline-flex">
                                     <button
                                         onClick={() => setActiveTab('paste')}
                                         className={`px-6 py-2 rounded-full font-medium transition-all text-base ${
                                             activeTab === 'paste' 
-                                                ? 'bg-white text-gray-700 shadow-md' 
-                                                : 'text-white hover:text-white/90'
+                                                ? 'bg-gray-200 text-gray-800 shadow-md' 
+                                                : 'text-gray-300 hover:text-white'
                                         }`}
                                     >
                                         {t('pasteTextTab')}
@@ -200,8 +200,8 @@
                                         onClick={() => setActiveTab('describe')}
                                         className={`px-6 py-2 rounded-full font-medium transition-all text-base ${
                                             activeTab === 'describe' 
-                                                ? 'bg-white text-gray-700 shadow-md' 
-                                                : 'text-white hover:text-white/90'
+                                                ? 'bg-gray-200 text-gray-800 shadow-md' 
+                                                : 'text-gray-300 hover:text-white'
                                         }`}
                                     >
                                         {t('describeTopicTab')}
@@ -209,21 +209,21 @@
                                 </div>
                             </div>
                             
-                            <div className="bg-white rounded-3xl p-8 shadow-lg">
+                            <div className="bg-gray-200 rounded-3xl p-8 shadow-lg">
                                 <textarea
                                     value={topic}
                                     onChange={(e) => setTopic(e.target.value)}
                                     placeholder={activeTab === 'describe' 
                                         ? t('describeTopicPlaceholder')
                                         : t('pasteTextPlaceholder')}
-                                    className="w-full h-52 text-gray-900 placeholder-gray-400 resize-none focus:outline-none"
+                                    className="w-full h-52 text-gray-800 placeholder-gray-500 resize-none focus:outline-none bg-transparent"
                                     style={{ fontSize: '18px', lineHeight: '1.6' }}
                                 />
                             </div>
                             
                             <button
                                 onClick={generateFlashcards}
-                                className="w-full mt-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-colors text-lg"
+                                className="w-full mt-8 py-4 bg-gray-600 text-white font-medium rounded-full hover:bg-gray-500 transition-colors text-lg"
                             >
                                 {t('generateFlashcardsButton')}
                             </button>
@@ -234,12 +234,12 @@
 
             if (mode === 'loading') {
                 return (
-                    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#6A9BCC' }}>
+                    <div className="min-h-screen flex items-center justify-center bg-gray-800">
                         <div className="text-center">
                             <h1 className="text-white text-4xl font-medium mb-4">{t('generatingTitle')}</h1>
-                            <p className="text-white/80 mb-8">{t('generatingSubtitle')}</p>
+                            <p className="text-gray-400 mb-8">{t('generatingSubtitle')}</p>
                             <div className="flex justify-center">
-                                <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                <div className="w-12 h-12 border-4 border-gray-600 border-t-gray-200 rounded-full animate-spin"></div>
                             </div>
                         </div>
                     </div>
@@ -250,7 +250,7 @@
                 const currentCard = flashcards[currentIndex];
                 
                 return (
-                    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#6A9BCC' }}>
+                    <div className="min-h-screen flex items-center justify-center bg-gray-800">
                         <div className="w-full max-w-2xl px-8">
                             <div className={`flip-container w-full h-96 ${animating ? 'card-animating' : ''}`}>
                                 <div
@@ -260,7 +260,7 @@
                                     {/* Front of card */}
                                     <div className="flip-card-face flex-col">
                                         <div className="text-center flex-1 flex items-center justify-center">
-                                            <h2 className="text-4xl font-medium text-gray-800">{currentCard.front}</h2>
+                                            <h2 className="text-4xl font-medium text-gray-700">{currentCard.front}</h2>
                                         </div>
                                         <p className="text-gray-500 mt-auto">{t('flipInstruction')}</p>
                                     </div>
@@ -268,7 +268,7 @@
                                     {/* Back of card */}
                                     <div className="flip-card-face flip-card-back">
                                         <div className="text-center">
-                                            <p className="text-xl text-gray-700 leading-relaxed">{currentCard.back}</p>
+                                            <p className="text-xl text-gray-600 leading-relaxed">{currentCard.back}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -280,14 +280,14 @@
                                     disabled={currentIndex === 0}
                                     className={`p-3 rounded-full transition-all ${
                                         currentIndex === 0 
-                                            ? 'bg-white/20 text-white/50 cursor-not-allowed' 
-                                            : 'bg-white/20 text-white hover:bg-white/30'
+                                            ? 'bg-gray-700 text-gray-500 cursor-not-allowed' 
+                                            : 'bg-gray-600 text-gray-200 hover:bg-gray-500'
                                     }`}
                                 >
                                     <ChevronLeft />
                                 </button>
                                 
-                                <span className="mx-6 text-white text-lg font-medium">
+                                <span className="mx-6 text-gray-200 text-lg font-medium">
                                     {currentIndex + 1} / {flashcards.length}
                                 </span>
                                 
@@ -296,8 +296,8 @@
                                     disabled={currentIndex === flashcards.length - 1}
                                     className={`p-3 rounded-full transition-all ${
                                         currentIndex === flashcards.length - 1 
-                                            ? 'bg-white/20 text-white/50 cursor-not-allowed' 
-                                            : 'bg-white/20 text-white hover:bg-white/30'
+                                            ? 'bg-gray-700 text-gray-500 cursor-not-allowed' 
+                                            : 'bg-gray-600 text-gray-200 hover:bg-gray-500'
                                     }`}
                                 >
                                     <ChevronRight />
@@ -311,7 +311,7 @@
                                         setTopic('');
                                         setFlashcards([]);
                                     }}
-                                    className="text-white/70 hover:text-white transition-colors underline-offset-2 hover:underline"
+                                    className="text-gray-400 hover:text-gray-200 transition-colors underline-offset-2 hover:underline"
                                 >
                                     {t('createNewFlashcardsLink')}
                                 </button>
